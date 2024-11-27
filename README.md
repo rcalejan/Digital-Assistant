@@ -2,8 +2,6 @@
 
 ## Robert Conrad Alejandre and Kathleen Pham
 
-# Personalized Digital Assistant Web App/Page
-
 Welcome to the Personalized Digital Assistant Web App/Page, a comprehensive tool designed to help UCI students stay organized and manage their weekly tasks and plans effectively. This application is tailored to meet the needs of college students by providing a suite of features that streamline task management and enhance productivity.
 
 ## Features
