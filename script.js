@@ -120,6 +120,20 @@ function updateNote() {
         displayNotes();
     }
 }
+function updateClockAndDate() {
+    const dateElement = document.getElementById('date');
+    const timeElement = document.getElementById('time');
+        
+    const now = new Date();
+
+    const optionsDate = { year: 'numeric', month: 'short', day: 'numeric' };
+    dateElement.textContent = now.toLocaleDateString('en-US', optionsDate);
+        
+    const optionsTime = { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'America/Los_Angeles' };
+    timeElement.textContent = now.toLocaleTimeString('en-US', optionsTime);
+}
+
+
 
 function deleteNote(noteId) {
     let notes = JSON.parse(localStorage.getItem('notes')) || [];
@@ -129,4 +143,7 @@ function deleteNote(noteId) {
     displayNotes();
 }
 
+updateClockAndDate();
+setInterval(updateClockAndDate, 1000);    
 displayNotes();
+

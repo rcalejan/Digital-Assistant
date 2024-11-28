@@ -8,6 +8,16 @@ body {
     justify-content: left;
     min-height: 100vh;
 }
+#clock-date-container {
+    font-size: 1.25em;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    color: rgb(0, 0, 0);
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 8px;
+}
 
 #container {
     background-color: white;
@@ -23,6 +33,7 @@ body {
     justify-content: center;
     overflow-y: auto;
 }
+
 
 #list-header {
     display: flex;
