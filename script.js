@@ -125,12 +125,23 @@ function updateClockAndDate() {
     const timeElement = document.getElementById('time');
         
     const now = new Date();
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+    let seconds = now.getSeconds();
+
+    hours = hours < 10 ? '0' + hours : hours;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+
+    const timeString = `${hours}:${minutes}:${seconds}`;
 
     const optionsDate = { year: 'numeric', month: 'short', day: 'numeric' };
     dateElement.textContent = now.toLocaleDateString('en-US', optionsDate);
+
+    document.getElementById('clock').textContent = timeString;
         
-    const optionsTime = { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'America/Los_Angeles' };
-    timeElement.textContent = now.toLocaleTimeString('en-US', optionsTime);
+    // const optionsTime = { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'America/Los_Angeles' };
+    // timeElement.textContent = now.toLocaleTimeString('en-US', optionsTime);
 }
 
 
