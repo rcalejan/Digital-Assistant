@@ -143,7 +143,7 @@ function deleteNote(noteId) {
     displayNotes();
 }
 
+displayNotes();
 updateClockAndDate();
 setInterval(updateClockAndDate, 1000);    
-displayNotes();
 

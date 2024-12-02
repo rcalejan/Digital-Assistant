@@ -8,6 +8,37 @@ body {
     justify-content: left;
     min-height: 100vh;
 }
+
+/* Grid container */
+#grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+    gap: 10px; /* Space between items */
+    padding: 20px;
+}
+
+/* Individual grid items */
+#grid-item {
+    background-color: #276d50;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+    border-radius: 8px;
+}
+
+#larger-grid-item {
+    background-color: #276d50;
+    color: white;
+    min-width: 300px;
+    height: 600px;
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+    border-radius: 8px;
+    justify-content: center;
+}
+
 #clock-date-container {
     font-size: 1.25em;
     font-weight: bold;
@@ -225,4 +256,11 @@ textarea {
 
 #closeButton {
     background-color: gainsboro;
+}
+
+/* Responsive Design */
+@media (max-width: 960px) {
+    .grid-container {
+        grid-template-columns: 1fr; /* 1 column on smaller screens */
+    }
 }
