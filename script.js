@@ -132,8 +132,12 @@ function updateClockAndDate() {
     hours = hours < 10 ? '0' + hours : hours;
     minutes = minutes < 10 ? '0' + minutes : minutes;
     seconds = seconds < 10 ? '0' + seconds : seconds;
-
-    const timeString = `${hours}:${minutes}:${seconds}`;
+    if (hours-12 < 0) {
+        AM_or_PM = "AM"
+    } else {
+        AM_or_PM = "PM"
+    }
+    const timeString = `${Math.abs(hours-12)}:${minutes}:${seconds} ${AM_or_PM}`;
 
     const optionsDate = { year: 'numeric', month: 'short', day: 'numeric' };
     dateElement.textContent = now.toLocaleDateString('en-US', optionsDate);
@@ -144,6 +148,30 @@ function updateClockAndDate() {
     // timeElement.textContent = now.toLocaleTimeString('en-US', optionsTime);
 }
 
+
+const apiKey = "621b05ea8a274b15ac234928240712";
+const lat = 33.69;
+const long = -117.83;
+
+async function getWeather() {
+    const url = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat},${long}`;
+    try {
+        const response = await fetch(url);
+        const info = await response.json();
+
+        if (info.error) {
+            console.error("Couldn't fetch weather", info.error.message);
+        } else {
+            const temp = (info.current.temp_c) * (9/5) + 32;
+            const city = info.location.name;
+
+            document.getElementById('weather-temp').innerText = `Outside: ${Math.round(temp)}°F`;
+            document.getElementById('weather-location').innerText = `City: ${city}`;
+        }
+    } catch (error) {
+        console.error("Error, couldn't retrieve data: ", error)
+    }
+}
 
 
 function deleteNote(noteId) {
@@ -156,5 +184,6 @@ function deleteNote(noteId) {
 
 displayNotes();
 updateClockAndDate();
-setInterval(updateClockAndDate, 1000);    
-
+setInterval(updateClockAndDate, 1000);   
+getWeather();
+// setInterval(getWeather, 100000); 
