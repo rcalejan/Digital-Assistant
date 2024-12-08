@@ -8,6 +8,16 @@
     padding: 20px;
 }
 
+/* Individual grid items */
+#grid-item {
+    background-color: #276d50;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+    border-radius: 8px;
+}
+
 .grid-item:nth-child(2) {
     grid-column: 2 / 3; /* Center horizontally */
     grid-row: 1 / 2; /* Place in the first row */
@@ -36,26 +46,6 @@ body {
     align-items: center;
     justify-content: left;
     min-height: 100vh;
-}
-
-/* Grid container */
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
-    grid-template-rows: repeat(2, 1fr);
-    gap: 10px; /* Space between items */
-    height: 100vh;
-    padding: 20px;
-}
-
-/* Individual grid items */
-#grid-item {
-    background-color: #276d50;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    font-size: 18px;
-    border-radius: 8px;
 }
 
 #larger-grid-item {
