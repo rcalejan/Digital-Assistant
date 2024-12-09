@@ -162,6 +162,7 @@ body {
     display: flex;
     align-items: left;
     justify-content: left;
+
 }
 
 ul {
@@ -187,13 +188,16 @@ li {
     margin: 10px;
     border-radius: 10px;
     border: 0.9px solid black;
-    box-shadow: 9px 9px 18px #b3b3b3, -9px -9px 19px white
+    box-shadow: 9px 9px 18px #b3b3b3, -9px -9px 19px white;
+    overflow-x: auto;
+    overflow-y: auto;
 }
 
 li span {
     font-size: 12px;
     flex-grow: 1;
     word-wrap: break-word;
+    overflow-x: auto;
     overflow-y: auto;
 }
 
