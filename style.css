@@ -2,7 +2,7 @@
 .grid-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
-    grid-template-rows: repeat(2, 1fr); /* 2 equal rows */
+    grid-template-rows: 120px 1fr;
     gap: 10px; /* Space between items */
     padding: 20px;
     width: 100%;
