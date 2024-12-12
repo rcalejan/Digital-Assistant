@@ -1,7 +1,7 @@
 /* Grid container layout */
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+    grid-template-columns: 1fr 2fr 1fr; /* 3 equal columns */
     grid-template-rows: 120px 1fr;
     gap: 10px; /* Space between items */
     padding: 20px;
