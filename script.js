@@ -182,8 +182,106 @@ function deleteNote(noteId) {
     displayNotes();
 }
 
+function displayToDoCalendar() {
+    document.addEventListener('DOMContentLoaded', function() {
+        const calendarElement = document.getElementById('calendar');
+        const todoList = document.getElementById('todoList');
+
+        const calendar = new FullCalendar.Calendar(calendarElement, {
+            initialView: 'dayGridMonth',
+            events: JSON.parse(localStorage.getItem('calendarEvents')) || []
+        });
+        calendar.render();
+
+        // Load To-Do List from localStorage
+        const savedTasks = JSON.parse(localStorage.getItem('todoTasks')) || [];
+        savedTasks.forEach(task => {
+            addTaskToDOM(task);
+        });
+
+        document.getElementById('addTask').addEventListener('click', function() {
+            const eventTitle = document.getElementById('eventTitle').value;
+            const startTime = document.getElementById('startTime').value;
+            const endTime = document.getElementById('endTime').value;
+
+            if (!eventTitle || !startTime || !endTime) {
+                alert('Please fill out all fields.');
+                return;
+            }
+
+            const eventId = new Date().getTime();
+            const newTask = {
+                id: eventId,
+                title: eventTitle,
+                start: startTime,
+                end: endTime
+            };
+
+            // Add to calendar
+            calendar.addEvent(newTask);
+
+            // Save to localStorage
+            const existingTasks = JSON.parse(localStorage.getItem('todoTasks')) || [];
+            existingTasks.push(newTask);
+            localStorage.setItem('todoTasks', JSON.stringify(existingTasks));
+
+            const existingEvents = JSON.parse(localStorage.getItem('calendarEvents')) || [];
+            existingEvents.push(newTask);
+            localStorage.setItem('calendarEvents', JSON.stringify(existingEvents));
+
+            addTaskToDOM(newTask);
+
+            // Clear input fields
+            document.getElementById('eventTitle').value = '';
+            document.getElementById('startTime').value = '';
+            document.getElementById('endTime').value = '';
+        });
+
+        function addTaskToDOM(task) {
+            const todoItem = document.createElement('div');
+            todoItem.classList.add('todo-item');
+            todoItem.setAttribute('data-id', task.id);
+
+            const titleElement = document.createElement('h3');
+            titleElement.textContent = task.title;
+
+            const startElement = document.createElement('p');
+            startElement.textContent = `Starts: ${new Date(task.start).toLocaleString()}`;
+
+            const endElement = document.createElement('p');
+            endElement.textContent = `Ends: ${new Date(task.end).toLocaleString()}`;
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.addEventListener('click', function() {
+                todoList.removeChild(todoItem);
+
+                // Update localStorage
+                let tasks = JSON.parse(localStorage.getItem('todoTasks')) || [];
+                tasks = tasks.filter(t => t.id !== task.id);
+                localStorage.setItem('todoTasks', JSON.stringify(tasks));
+
+                let events = JSON.parse(localStorage.getItem('calendarEvents')) || [];
+                events = events.filter(e => e.id !== task.id);
+                localStorage.setItem('calendarEvents', JSON.stringify(events));
+
+                // Remove from calendar
+                calendar.getEventById(task.id)?.remove();
+            });
+
+            todoItem.appendChild(titleElement);
+            todoItem.appendChild(startElement);
+            todoItem.appendChild(endElement);
+            todoItem.appendChild(deleteButton);
+            todoList.appendChild(todoItem);
+        }
+    });
+}
+
+displayToDoCalendar();
 displayNotes();
 updateClockAndDate();
 setInterval(updateClockAndDate, 1000);   
 getWeather();
+
 // setInterval(getWeather, 100000); 

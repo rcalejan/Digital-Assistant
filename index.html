@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Calendar api from https://www.jsdelivr.com/package/npm/fullcalendar?version=6.1.15 -->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar/index.global.min.js'></script>
 </head>
 
 <body>
@@ -52,15 +54,23 @@
         
         <!-- Grid Element 5 -->
         <div class="larger-grid-element">
-            <div id="container"><b>Calendar Goes Here </b>
-
+            <div id="container"><b>Calendar</b>
+                <div id="calendar"></div>
             </div>
         </div> 
         
         <!-- Grid Element 6 -->
         <div class="larger-grid-element">
             <div id="container"><b>To-Do List</b>
-
+                <div class="form-container">
+                    <input type="text" id="eventTitle" placeholder="What do you need to do?" required>
+                    <input type="datetime-local" id="startTime" required>
+                    <input type="datetime-local" id="endTime" required>
+                    <button id="addTask">Add Task</button>
+                </div>
+                <div class="todo-list" id="todoList">
+                    <!-- Tasks will be added down here as they are inputted! -->
+                </div>
             </div>
         </div> 
     </div>
